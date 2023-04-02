@@ -1,25 +1,45 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32616.157
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "remove_repeating_character", "remove_repeating_character.csproj", "{3888B15B-55D2-4BAE-8508-AC7D6D8FBDEA}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3888B15B-55D2-4BAE-8508-AC7D6D8FBDEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3888B15B-55D2-4BAE-8508-AC7D6D8FBDEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3888B15B-55D2-4BAE-8508-AC7D6D8FBDEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3888B15B-55D2-4BAE-8508-AC7D6D8FBDEA}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {08E8695E-18C6-464B-89DB-B94184CE1C2C}
-	EndGlobalSection
-EndGlobal
+ublic class MainClass
+{
+     static void Main (string[] agrs)
+    {
+        Repeating_string rs = new();
+        Console.WriteLine(rs.removeReverse("ababab"));
+    }
+
+}
+
+
+public class Repeating_string
+{
+   public String removeReverse(String S)
+    {
+        //ababab
+        //babab
+        //baba
+        //aba
+        //ab
+        int L =0;
+        for (int i = 0; i < S.Length; i++)
+        {
+            String str = S.Substring(0,L);         
+            String ns = "";
+
+            int char_index = str.IndexOf(S[L]);
+            if (char_index > -1 && char_index < L)
+            {
+                S = S.Remove(char_index, 1);
+                for(int j = S.Length - 1; j >= 0; j--)
+                {
+                    ns += S[j];
+                }
+                S = ns;
+                L = 1;
+            }
+            else
+            {
+                L++;
+            }
+        }
+        return S;
+    }
+}
